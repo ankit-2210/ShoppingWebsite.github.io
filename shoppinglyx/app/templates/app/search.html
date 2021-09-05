@@ -1,0 +1,109 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Search{% endblock title %}
+
+
+{% block body %}
+<div class="container my-3">
+    <h2>Search results : </h2>
+
+    {% if allProds|length < 1 %}
+    <p>No search results</p>
+        Your search query : <b>{{query}}</b> did not match any documents. <br>
+        Suggestions:
+    <ul>
+        <li>Make sure that all words are spelled correctly.</li>
+        <li>Try more general keywords.</li>
+        <li> Try fewer keywords.</li>
+        <li> Try different keywords.</li>
+    </ul>
+    {% endif %}
+
+
+{% for prod , b, s, tp, m in allProds %}
+
+{% block main-content %}
+<!-- 1st Product Slider -->
+<div class="m-3">
+ <h2>ShoppingX Bottom Wears</h2>
+ <!-- Slider 1 -->
+ <div class="owl-carousel" id="slider1">
+  {% for b in bottomwears %}  
+
+  <a href="{% url 'product-detail' b.id %}" class="btn"><div class="item"><img src="{{b.product_image.url}}" alt="" height="200px"><span class="fw-bold">{{b.title}}</span><br><span class="fs-5">Rs. {{b.discounted_price}}</span></div></a>
+    
+  {% endfor %}
+
+ </div>
+</div>
+<!-- End 1st Product Slider -->
+
+
+
+<!-- 2nd Product Slider -->
+<div class="mx-3">
+ <h2>ShoopinglyX for Top Wears</h2>
+ <!-- Slider 2 -->
+ <div class="owl-carousel" id="slider2">
+    {% for tp in topwears %}  
+
+    <a href="{% url 'product-detail' tp.id %}" class="btn"><div class="item"><img src="{{tp.product_image.url}}" alt="" height="200px"><span class="fw-bold">{{tp.title}}</span><br><span class="fs-5">Rs. {{tp.discounted_price}}</span></div></a>
+    
+    {% endfor %}
+
+
+ </div>
+</div>
+<!-- End 2nd Product Slider -->
+
+
+<!-- 3rd Product Slider -->
+<div class="mx-3">
+ <h2>ShoopinglyX for Mobiles</h2>
+ <!-- Slider 3 -->
+ <div class="owl-carousel" id="slider3">
+    {% for m in mobiles %}  
+
+    <a href="{% url 'product-detail' m.id %}" class="btn"><div class="item"><img src="{{m.product_image.url}}" alt="" height="200px"><span class="fw-bold">{{m.title}}</span><br><span class="fs-5">Rs. {{m.discounted_price}}</span></div></a>
+    
+    {% endfor %}
+
+
+ </div>
+</div>
+<!-- End 3rd Product Slider -->
+
+
+
+<!-- 4rd Product Slider -->
+<div class="mx-3">
+ <h2>ShoopinglyX for Shoes</h2>
+ <!-- Slider 4 -->
+ <div class="owl-carousel" id="slider4">
+    {% for s in shoes %}  
+
+    <a href="{% url 'product-detail' s.id %}" class="btn"><div class="item"><img src="{{s.product_image.url}}" alt="" height="200px"><span class="fw-bold">{{s.title}}</span><br><span class="fs-5">Rs. {{s.discounted_price}}</span></div></a>
+    
+    {% endfor %}
+
+
+ </div>
+</div>
+<!-- End 4rd Product Slider -->
+
+
+
+{% endblock main-content %}
+
+{% endfor %}
+
+
+{% block footer %}
+<!-- Start Footer -->
+    <footer class="container-fluid bg-dark text-center p-2 mt-5">
+        <small class="text-white">Copyright &copy; 2021 || Designed By GeekyShows || </small>
+        <img src="{% static 'app/images/payment.png' %}" alt="" srcset="" class="img-fluid" height="2px">
+    </footer> <!-- End Footer -->
+{% endblock footer %}
+
+{% endblock %}
